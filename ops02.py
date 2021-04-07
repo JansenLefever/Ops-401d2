@@ -8,16 +8,11 @@ now = datetime.datetime.now()
 ping = os.system("ping -c 1 " + str(addr))
 
 while True:
-        print ("Start Ping attempt : %s" % time.ctime())
         print()
         time.sleep( 1 )
         if ping == 0:
-            print(str(now))
-            print("Network Active to " + str(addr))
+            print((str(now)) + " " + "Network Active to " + str(addr))
         else:
-            print("Connection Failed " + str(now))
-        print()
-        print ("End Ping attempt : %s" % time.ctime())
-        print()
+            print((str(now)) + " " + "Connection Failed to " + str(addr))
         time.sleep( 1 )
 

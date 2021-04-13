@@ -6,11 +6,11 @@
 
 import smtplib, os, time, datetime
 
-fromaddr = 'thejanman19@gmail.com'  
-toaddrs  = 'jansenlefever@gmail.com'   
+fromaddr = '***********@gmail.com'  
+toaddrs  = '***********@gmail.com'   
 
-username = 'thejanman19'  
-password = 'Spamthis'
+username = '********'  
+password = '********'
 
 addr = input("What Ip Address would you like to ping:" )
 

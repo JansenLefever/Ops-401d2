@@ -8,7 +8,7 @@
 
 # Import Libraries
 
-from cryptography.fernet import Fernet
+from cryptography.fernet import Fernet, os
 
 # Declare Functions
 
@@ -22,84 +22,62 @@ def load_key():
     # Load the key from the current directory named `key.key`
     return open("key.key", "rb").read()
 
+key = load_key()
+
 def Encrpt_string():
-    key = load_key()
-    print("Key is "+str(key.decode('utf-8')))
-
-    message = "hello friend".encode()
-    print("Plaintext is "+str(message.decode('utf-8')))
-
-    # Initialize the Fernet class
+    message = input("What string would you like to encrypt: ")
+    mess_e = message.encode()
     f = Fernet(key)
+    encrypted = f.encrypt(mess_e)
+    print(encrypted.decode('utf-8'))
 
-# Encrypt the message
-    encrypted = f.encrypt(message)
+def Decrypt_string():
+    message = input("What string would you like to decrypt: ")
+    mess_d = str.encode(message)
+    f = Fernet(key)
+    decrypted = f.decrypt(mess_d)
+    print(decrypted.decode('utf-8'))
+   
+def Encrypt_file():
+    f = Fernet(key)
+    filepath = input("Enter File path \n>:")
+    with open(filepath, "rb") as file:
+        file_data = file.read()
+    Enc_file = f.encrypt(file_data)
 
-# Print how it looks
-print(encrypted.decode('utf-8'))
+    with open(filepath, "wb") as file:
+        file.write(Enc_file)
+
+def Decrypt_file():
+    f = Fernet(key)
+    filepath = input("Enter File path \n>:")
+    with open(filepath, "rb") as file:
+        file_data = file.read()
+    Dec_file = f.decrypt(file_data)
+
+    with open(filepath, "wb") as file:
+        file.write(Dec_file)
 
 # Main
 
-x = int(input('1)Encrpt Files 2)Decrypt Files 3)Encrypt String 4)Decrypt String 5)Exit'))
-    
+x = int(input('1)Encrpt String \n2)Decrypt String \n3)Encrypt File \n4)Decrypt File \n5)Exit \nEnter Number: '))
     
 if x == 1:
-   
-    else:
-        print("exiting")
+    Encrpt_string()
 elif x == 2:
-    y = str(input("Are you sure? y/n: "))
-    if y == 'y':
-        response = requests.post(str(site))
-        if response.status_code == 200:
-            print('Success')
-        elif response.status_code == 404:
-            print('Site not found')
-        else:
-            print(response.status_code)
-    else:
-        print("exiting")
+    Decrypt_string()
 elif x == 3:
-    y = str(input("Are you sure? y/n: "))
-    if y == 'y':
-        response = requests.put(str(site))
-        if response.status_code == 200:
-            print('Success')
-        elif response.status_code == 404:
-            print('Site not found')
-        else:
-            print(response.status_code)
-    else:
-        print("exiting")
+    Encrypt_file()
 elif x == 4:
-    y = str(input("Are you sure? y/n: "))
-    if y == 'y':
-        response = requests.delete(str(site))
-        if response.status_code == 200:
-            print('Success')
-        elif response.status_code == 404:
-            print('Site not found')
-        else:
-            print(response.status_code)
-    else:
-        print("exiting")
+    Decrypt_file()    
 elif x == 5:
-    y = str(input("Are you sure? y/n: "))
-    if y == 'y':
-        response = requests.head(str(site))
-        if response.status_code == 200:
-            print('Success')
-        elif response.status_code == 404:
-            print('Site not found')
-        else:
-            print(response.status_code)
-    else:
-        print("exiting")
+    print("Exiting")
+else:
+    print("incorrect input")
   
 
 # Generate and write a new key
 #write_key()
-
 # load the previously generated key
 
 

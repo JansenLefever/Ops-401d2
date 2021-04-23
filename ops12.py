@@ -1,6 +1,6 @@
 #! /usr/bin/env python3
 
-import random
+import random, ipaddress
 from scapy.all import ICMP, IP, sr1, TCP
 
 # Define end host and TCP port range

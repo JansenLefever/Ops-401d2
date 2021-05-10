@@ -1,5 +1,6 @@
 #! /usr/bin/env python3
 from pexpect import pxssh
+from zipfile import ZipFile
 import getpass
 
 #! /usr/bin/env python3
@@ -73,7 +74,21 @@ def brute_force():
         except pxssh.ExceptionPxssh as e:
             print("pxssh failed on login.")
             print(e)    
-     
+
+def zip_unlock():
+    zip_file = "protectme2.zip"
+
+    filepath = input("Enter your dictionary filepath:\n")
+    file = open(filepath, encoding = "ISO-8859-1") # address encoding problem
+    line = file.readline()
+
+    while line:
+        line = line.rstrip()
+        line = file.readline()
+        password = line.rstrip("\n")
+        with ZipFile(zip_file) as zf:
+            zf.extractall(pwd=bytes(password,'utf-8'))
+
 #
 #
 #
@@ -87,7 +102,8 @@ Brue Force Wordlist Attack Tool Menu
 1 - Offensive, Dictionary Iterator
 2 - Defensive, Password Recognized
 3 - Offensive, Brute Force
-4 - Exit
+4 - Offensive, Zip File Brute force
+5 - Exit
     Please enter a number: 
 """)
         if (mode == "1"):
@@ -97,6 +113,8 @@ Brue Force Wordlist Attack Tool Menu
         elif (mode == '3'):
             brute_force()
         elif (mode == '4'):
+            zip_unlock()
+        elif (mode == "5"):
             break
         else:
             print("Invalid selection...") 

@@ -1,12 +1,7 @@
 #! /usr/bin/env python3
 from pexpect import pxssh
 from zipfile import ZipFile
-import getpass
-
-#! /usr/bin/env python3
-# Import libraries
-from pexpect import pxssh
-import time, getpass
+import time, getpass, logging
 
 # Declare functions
 def iterator ():

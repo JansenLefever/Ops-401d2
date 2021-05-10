@@ -1,0 +1,9 @@
+./HIPAA/test1.txt
+James	Smith	76148	4929-3813-3266-4295	1/15/2020
+
+./HIPAA/test2.txt
+Christopher	Anderson	2/3/1981	ChristopherAnderson@gmail.com
+
+./HIPAA/test.txt
+Robert Aragon	489-36-8350	6/7/1981
+
